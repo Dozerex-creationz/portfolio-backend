@@ -11,8 +11,23 @@ const PORT = process.env.PORT || 8080;
 app.use(helmet());
 
 // CORS configuration for frontend
+const allowedOrigins = (
+  process.env.CORS_ALLOWED_ORIGINS ||
+  process.env.FRONTEND_URL ||
+  "http://localhost:3000"
+)
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -53,6 +68,7 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
   console.log(`Frontend URL: ${process.env.FRONTEND_URL}`);
+  console.log(`CORS Allowed Origins: ${process.env.CORS_ALLOWED_ORIGINS}`);
 });
 
 module.exports = app;
