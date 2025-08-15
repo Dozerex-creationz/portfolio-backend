@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Frontend Development",
+    "description": "React, TypeScript, Javascript, Tailwind CSS",
+    "icon": "code"
+  },
+  {
+    "name": "Backend Development",
+    "description": "Node.js, Express, Django, Flask, Spring Boot",
+    "icon": "server"
+  },
+  {
+    "name": "Database Management",
+    "description": "MongoDB, Redis, MySQL",
+    "icon": "database"
+  },
+  {
+    "name": "DevOps & Cloud",
+    "description": "Docker, GCP, CI/CD, Git, Jenkins",
+    "icon": "globe"
+  }
+]
