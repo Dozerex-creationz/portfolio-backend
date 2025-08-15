@@ -20,7 +20,6 @@ router.get("/", async (req, res, next) => {
       skills = await loadSkillsFromDisk();
       cache.set(SKILLS_CACHE_KEY, skills);
     }
-
     res.json({ data: skills });
   } catch (error) {
     next(error);
